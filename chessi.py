@@ -22,7 +22,11 @@ def render_square(square):
     return UNICODE_PIECES[piece.symbol()] if piece else " "
 
 def legal_moves_from(square):
-    return [m.to_square for m in st.session_state.board.legal_moves if m.from_square == square]
+    return [
+        m.to_square
+        for m in st.session_state.board.legal_moves
+        if m.from_square == square
+    ]
 
 def reset_game():
     st.session_state.board = chess.Board()
@@ -120,8 +124,9 @@ for rank in range(7, -1, -1):
                     st.session_state.move_stack.append(move)
 
                 st.session_state.selected_square = None
-                st.experimental_rerun()
+                st.rerun()
 
 # ---------- Footer ----------
 st.divider()
 st.caption("✔️ Volle Regeln • ✔️ Legale Züge hervorgehoben • ✔️ Zwei Spieler an einem Gerät")
+
